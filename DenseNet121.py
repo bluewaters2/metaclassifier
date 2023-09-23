@@ -1,14 +1,14 @@
 import tensorflow as tf
-from tensorflow.keras.applications import EfficientNetB7
+from tensorflow.keras.applications import DenseNet121
 from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.efficientnet import preprocess_input
+from tensorflow.keras.applications.densenet import preprocess_input
 import numpy as np
 import h5py
 from dataprocess import dataset_precess
 # Load the Inception-ResNet v1 model pre-trained on ImageNet data
-def EfficientNetB7(dataset):
+def DenseNet121(dataset):
   for image in range(0, len(dataset)):
-    model = EfficientNetB7(weights='imagenet', include_top=False, input_tensor=Input(shape=(299,299,3)))  # Exclude the top classification layer
+    model = DenseNet121(weights='imagenet', include_top=False, input_tensor=Input(shape=(299,299,3)))  # Exclude the top classification layer
     model = Model(inputs=model.input, outputs=model.get_layer('conv_5b').output)
     image_size = (224, 224)
 
